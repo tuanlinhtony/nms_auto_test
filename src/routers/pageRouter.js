@@ -1,6 +1,7 @@
 const {Builder, Browser, By, Key, until} = require('selenium-webdriver')
 const { v4: uuidv4 } = require('uuid');
 require('chromedriver')
+require('msedgedriver')
 const express = require('express')
 const async = require('hbs/lib/async')
 const axios = require('axios')
@@ -20,7 +21,6 @@ const pool = new Pool({
 
 //Create main  view
 router.get('/',  async(req,res) => {
-
     try{
         const testcases = await Testcase.find({})
 
@@ -50,7 +50,7 @@ router.get('/loginTesting',  async(req,res) => {
     // const tenDanhMucThietBi = "Linh test lần thứ " + uuidv4();
     // generating random integers within a range
     const tenDanhMucThietBi = "Danh mục thiết bị số " + Math.floor(Math.random() * 9999)
-    let driver = await new Builder().forBrowser(Browser.CHROME).build();
+    let driver = await new Builder().forBrowser(Browser.EDGE).build();
     try {
         //Đăng nhập vào web
         await driver.manage().window().setRect({ width: 1024, height: 768 });
